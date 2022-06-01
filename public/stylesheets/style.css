@@ -1,8 +1,17 @@
 body {
-  padding: 50px;
+  margin: 0;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-a {
-  color: #00B7FF;
+
+.banner {
+  padding: 20px;
+  background-color: #00B7FF;
+  display: flex;
+  flex-direction: row;
+  
+}
+
+.banner > a {
+  color: white;
 }
