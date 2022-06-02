@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
+const posts_controller = require('../controllers/post_controller')
 const user_controller = require('../controllers/user_controller')
 
 /* GET home page. */
