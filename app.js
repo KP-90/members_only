@@ -1,3 +1,4 @@
+require('dotenv').config()
 const createError = require('http-errors');
 const express = require('express');
 const session = require("express-session");
@@ -12,7 +13,7 @@ const bcrypt = require('bcryptjs')
 const Users = require('./models/users')
 
 // Connect to db
-const mongodb_url = "mongodb+srv://m001-student:bailey36@cluster0.f91ek.mongodb.net/members_only?retryWrites=true&w=majority"
+const mongodb_url = process.env.URL;
 
 mongoose.connect(mongodb_url, { useUnifiedTopology: true, useNewUrlParser: true });
 const db = mongoose.connection;
@@ -36,7 +37,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Passport and session stuff
-app.use(session({ secret: "dogs", resave: false, saveUninitialized: true }));
+app.use(session({ secret: process.env.SECRET, resave: false, saveUninitialized: true }));
 
 // for use with the passport.authenticate() function and set up passport for use with app
 passport.use(

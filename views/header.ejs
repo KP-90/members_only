@@ -7,6 +7,12 @@
   <body>
     <div class="banner">
       <a href="/" style="text-decoration: none;"><h1>MEMBERS ONLY</h1></a>
+      <% if (locals.user) {%>
+        <div>
+          <h3>Welcome,</h3>
+          <h4><%= user.username %></h4> 
+        </div>
+      <%}%>
       <div class="links">
         <% if (!locals.user) {%>
           <a href="/login">Log in</a>
