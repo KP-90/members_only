@@ -1,8 +1,19 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= title %></title>
+    <title>MEM</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-
+    <div class="banner">
+      <a href="/" style="text-decoration: none;"><h1>MEMBERS ONLY</h1></a>
+      <div class="links">
+        <% if (!locals.user) {%>
+          <a href="/login">Log in</a>
+          <a href="/signup">sign up</a>
+        <%} else {%>
+          <a href="/logout">Logout</a>
+        <%}%>
+      </div>
+    </div>
+    <div class="content"

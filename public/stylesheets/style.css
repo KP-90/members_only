@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 32px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 
@@ -9,9 +9,39 @@ body {
   background-color: #00B7FF;
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
   
 }
 
-.banner > a {
+.links > a {
+  color: black;
+  text-decoration: none;
+  margin: 25px;
+  padding: 25px;
+  border: 1px solid black;
+}
+
+.links {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-evenly;
+}
+
+a:hover {
   color: white;
+  text-decoration: underline;
+}
+
+.content {
+  padding: 50px;
+}
+
+footer {
+  position: absolute;
+  bottom: 0px;
+  width: 100vw;
+  padding: 5px;
+  text-align: center;
+  background-color: #00B7FF;
+  margin: 0;
 }

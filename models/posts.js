@@ -1,10 +1,3 @@
-/*
-    body        text
-    author      ref user model
-    created     date/time
-
-*/
-
 const { DateTime } = require("luxon");
 let mongoose = require('mongoose');
 

@@ -1,12 +1,12 @@
 <%- include('header') -%>
 
-<div class="banner">
-    <h1>MEMBERS ONLY</h1>
-    <a href="/login">Log in</a>
-    <a href="/signup">sign up</a>
 
-</div>
 <h1><%= title %></h1>
+<% if (locals.user) {%>
+    <p><%= locals.user.username %></p>
+<%} else {%>
+  <p>No user</p>
+<%}%>
 <p>Welcome to <%= title %></p>
 
 <%- include('footer') -%>

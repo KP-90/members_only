@@ -5,12 +5,20 @@ const posts_controller = require('../controllers/post_controller')
 const user_controller = require('../controllers/user_controller')
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
+router.get('/', user_controller.index)
 
+// GET route for user signup 
 router.get('/signup', user_controller.signup)
 
-router.get('/login', user_controller.login)
+// POST route for user signup
+router.post('/signup', user_controller.signup_post)
+
+// GET route for login page
+router.get('/login', user_controller.login_get)
+
+// POST route for logging in
+router.post('/login', user_controller.login_post)
+
+router.get('/logout', user_controller.logout)
 
 module.exports = router;
