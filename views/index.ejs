@@ -1,12 +1,28 @@
 <%- include('header') -%>
 
+<div class="d-flex flex-column mb-3 container">
+    <div class="card">
+        <strong>post text</strong>
+        <p>author - timestamp</p>
+    </div>
+    <div class="card">
+        <strong>post text</strong>
+        <p>author - timestamp</p>
+    </div>
+    <div class="card">
+        <strong>post text</strong>
+        <p>author - timestamp</p>
+    </div>
 
-<h1><%= title %></h1>
-<% if (locals.user) {%>
-    <p><%= locals.user.username %></p>
-<%} else {%>
-  <p>No user</p>
-<%}%>
-<p>Welcome to <%= title %></p>
+    <div class="card">
+        <strong>post text</strong>
+        <p>author - timestamp</p>
+    </div>
+    <div class="card">
+        <strong>post text</strong>
+        <p>author - timestamp</p>
+    </div>
+</div>
+
 
 <%- include('footer') -%>

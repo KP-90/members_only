@@ -21,4 +21,7 @@ router.post('/login', user_controller.login_post)
 
 router.get('/logout', user_controller.logout)
 
+// GET route for creating new post
+router.get('/create')
+
 module.exports = router;

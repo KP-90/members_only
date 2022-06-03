@@ -36,9 +36,21 @@ a:hover {
   padding: 50px;
 }
 
+.new_post_btn {
+  margin: auto;
+  position: relative;
+  left: -10vw;
+}
+
+.new_post_btn > button {
+  border-radius: 50px;
+  --bs-btn-font-size: 1.5rem;
+}
+
+
 footer {
   position: absolute;
-  bottom: 0px;
+  bottom: 1;
   width: 98vw;
   padding: 5px;
   text-align: center;
