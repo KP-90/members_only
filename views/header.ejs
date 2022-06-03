@@ -9,11 +9,11 @@
   <body>
     <div class="banner">
       <a href="/" style="text-decoration: none;"><h1>MEMBERS ONLY</h1></a>
-      <% if (locals.user) {%>
+      <% if (currentUser) {%>
         <a href="/create" class="new_post_btn"><button class="btn btn-primary btn-lg">+</button></a>
       <%}%>
       <div class="nav">
-        <% if (!locals.user) {%>
+        <% if (!currentUser) {%>
           <a href="/login" class="nav-link nav_item">Log in</a>
           <a href="/signup" class="nav-link nav_item">sign up</a>
         <%} else {%>
