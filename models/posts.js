@@ -12,7 +12,7 @@ let Post_schema = new Schema({
 Post_schema
 .virtual('timstamp_formatted')
 .get(function(){
-    return this.timestamp ? DateTime.fromJSDate(this.timestamp).plus({days: 1}).toLocaleString(DateTime.DATE_MED) : '';
+    return this.timestamp ? DateTime.fromJSDate(this.timestamp).toLocaleString(DateTime.DATETIME_FULL) : '';
 })
 
 module.exports = mongoose.model('Post', Post_schema)

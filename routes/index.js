@@ -16,16 +16,20 @@ router.post('/signup', user_controller.signup_post)
 // GET route for login page
 router.get('/login', user_controller.login_get)
 
-// POST route for logging in
+// POST & Get route for logging in and out
 router.post('/login', user_controller.login_post)
-
 router.get('/logout', user_controller.logout)
 
-// GET route for creating new post
+// GET & POST route for creating new post
 router.get('/create', posts_controller.new_post_get)
-
 router.post('/create', posts_controller.post_new_post)
 
+// GET & POST routes for updating a post
+router.get('/update/:id', posts_controller.get_update_post)
+router.post('/update/:id', posts_controller.post_update_post)
 
+// Routes for DELETE a post
+router.get('/delete/:id', posts_controller.get_delete_post)
+router.post('/delete/:id', posts_controller.post_delete_post)
 
 module.exports = router;

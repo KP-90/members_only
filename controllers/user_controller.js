@@ -6,7 +6,11 @@ const passport = require("passport");
 
 // Main page
 exports.index = function(req, res) {
-  res.render('index', { title: 'Express', user: req.user });
+
+    Posts.find({}).populate("author").exec(function(err, result) {
+        res.render('index', { title: 'Express', user: req.user, posts: result});
+    })
+  
 }
 // Get signup page
 exports.signup = (req, res) => res.render('signup')
