@@ -3,8 +3,8 @@
 <h1><%= title %>:</h1>
 <form action="" method="POST">
     <div class="mb-3">
-        <label for="textarea" class="form-label"></label>
-        <textarea class="form-control" id="textarea" rows="3" value=(undefined===<% locals.text %> ? '' : <% locals.text %>)></textarea>
+        <label for="post_text" class="form-label"></label>
+        <textarea name="post_text" class="form-control" id="post_text" rows="3" value=(undefined===<% locals.text %> ? '' : <% locals.text %>)></textarea>
     </div>
     
     <button type="submit" class="btn btn-primary mb-3">POST</button>

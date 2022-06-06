@@ -8,21 +8,22 @@ exports.new_post_get = function(req, res, next) {
 }
 
 exports.post_new_post = [
-    body('textarea', "Error with post").escape(),
-
+    body('post_text', "Error with post"),
     (req, res, next) => {
-        console.log(req.user)
+        console.log(req.body.post_text)
+        console.log(req.body)
+        
         const errors = validationResult(req);
 
         let new_post = new Posts({
             author: req.user.id,
-            text: req.body.textarea, // not saving text for some reason
+            text: req.body.post_text, // not saving text for some reason
             timestamp: Date.now()
         })
         console.log(new_post)
         if(!errors.isEmpty()) {
             console.log(errors.array())
-            res.render('post_form', {title: "Create New Post", text: req.body.textarea, errors: errors.array()})
+            res.render('post_form', {title: "Create New Post", text: req.body.post_text, errors: errors.array()})
         }
         else {
             new_post.save(err=>{
