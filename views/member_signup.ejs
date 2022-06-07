@@ -1,0 +1,47 @@
+<%- include('header') -%>
+<script src="member_signup_handler" defer></script>
+
+<p>Becoming a member means you will be able to see other member posts, but that also means that other members will be able to see what you posted too.</p>
+<p>This action is not reversible!</p>
+
+<% if (!currentUser.member) {%>
+    <form action="" method="POST" class="row gy-2 gx-3 align-items-center">
+        <div class="form-check col-auto">
+            <input type="checkbox" name="confirm_member" id="confirm_member" class="form-check-input">
+            <label for="confirm_member" class="form-check-label">Become a Member</label>
+        </div>
+        <div class="col-auto">
+            <button type="submit" id="confirm_btn" class="btn btn-primary">Confirm</button>
+        </div>
+        
+    </form>
+<%} else {%>
+    <p>You are already a member.</p>
+<%}%>
+
+<%# ADMIN SECTION %> 
+<% if (!currentUser.admin) {%>
+    <form action="/member_signup/admin" method="POST" class="row gy-2 gx-3 align-items-center">
+        <div class="form-text col-auto">
+            <label for="confirm_admin" class="form-check-label">Admin Password</label>
+            <input type="password" name="confirm_admin" id="confirm_admin" class="">
+        </div>
+        <div class="col-auto">
+            <button type="submit" id="confirm_btn" class="btn btn-primary">submit</button>
+        </div>
+        
+    </form>
+<%} else {%>
+    <p>You are an admin.</p>
+<%}%>
+
+
+<% if (locals.errors) {%>
+    <ul>
+    <% for (error in errors) {%>
+      <li><%= errors[error].msg %></li>
+    <%}%>
+    </ul>
+  <%}%>
+
+<%- include('footer') -%>

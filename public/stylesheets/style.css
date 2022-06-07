@@ -39,7 +39,7 @@ a:hover {
 .new_post_btn {
   margin: auto;
   position: relative;
-  left: -10vw;
+  left: 0vw;
 }
 
 .new_post_btn > button {

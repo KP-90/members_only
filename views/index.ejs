@@ -8,15 +8,17 @@
             <div class="card">
                 <div class="card-body">
                     <strong class="card-title"><%= posts[i].text %></strong>
-                    <% if(currentUser) {%>
-                        <p class="card-text"><%= posts[i].author.username %> - <%= posts[i].timstamp_formatted %></p>
-                    <%} else { %>
+                    <% if(currentUser && posts[i].author.id === currentUser.id) {%>
+                        <p class="card-text">You - <%= posts[i].timstamp_formatted %></p>
+                    <%} else if (currentUser && (currentUser.member === true && posts[i].author.member === true)) { %>
+                        <p class="card-text"><a href="user/<%= posts[i].author.id %>"><%= posts[i].author.username %></a> - <%= posts[i].timstamp_formatted %></p>
+                    <% } else { %> 
                         <p class="card-text">Anonymous - <%= posts[i].timstamp_formatted %></p>
                     <%}%>
 
                     <%# Set edit and delete buttons in a form for style purposes, and make delete able to send a POST request from the button 
                         Only displays if there is a currentUser AND that user has the same ID as the author %> 
-                    <% if( currentUser && currentUser.id === posts[i].author.id) {%>
+                    <% if( currentUser && (currentUser.id === posts[i].author.id || currentUser.admin)) {%>
                         <form method="POST" action="/delete/<%= posts[i].id %>">
                             <a class="btn btn-info" href="/update/<%= posts[i].id %>")><i class="bi bi-pencil-fill"></i></a>
                             <button type="submit" class="btn btn-danger"><i class="bi bi-trash3"></i></button>
