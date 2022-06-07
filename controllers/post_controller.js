@@ -16,9 +16,9 @@ exports.post_new_post = [
     /*---------------------------------------------------------------------------------------------|
     |   Don't forget to change the post_update_post function as well if any changes are made here  |
     |______________________________________________________________________________________________|*/
-    body('post_text', "Error with post").trim().notEmpty().escape(),
+    body('post_text', "Error with post").trim().notEmpty().escape(),  // Look into special charcters saving as html encodes
     (req, res, next) => {
-        
+        console.log(req.body.post_text)
         const errors = validationResult(req);
         // Save post to a variable for use in re-rendering form if need be
         let new_post = new Posts({

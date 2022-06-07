@@ -7,7 +7,7 @@ const async = require('async')
 
 // Main page
 exports.index = function(req, res) {
-    Posts.find({}).populate("author").exec(function(err, result) {
+    Posts.find({}).sort({'timestamp': -1}).populate("author").exec(function(err, result) {
         res.render('index', { title: 'Express', user: req.user, posts: result});
     })
   
@@ -33,7 +33,7 @@ exports.signup = (req, res) => res.render('signup')
 
 // POST signup page
 exports.signup_post = [
-    body('username', 'Error with username').trim().isAlphanumeric().isLength({ min: 3}).escape().custom(async (username) => {
+    body('username').trim().isAlphanumeric().isLength({ min: 3}).withMessage("Username must be at least 3 characters").escape().custom(async (username) => {
         return Users.findOne({username: username})
         .then(result => {
             if (result !== null) {
@@ -44,7 +44,6 @@ exports.signup_post = [
     body('password', 'Error with password').escape(),
     body('confirm_password').escape().custom(async (confirm_password, {req}) => {
         if (confirm_password != req.body.password) {
-            console.log("Error with password matching")
             throw new Error("passwords must match")
         }
     }),
@@ -53,8 +52,6 @@ exports.signup_post = [
         const errors = validationResult(req);
 
         if(!errors.isEmpty()) {
-            console.log("error in user validation")
-            console.log(errors.array())
             res.render('signup', {errors: errors.array()})
         }
         else{

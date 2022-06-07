@@ -7,12 +7,16 @@
 </div>
 
 <h2>Posts by this user: </h2>
-<% for(i in posts) {%>
-    <div class="card">
-        <div class="card-body">
-            <strong class="card-title"><%= posts[i].text %></strong>
+<% if (posts.length > 0) {%>
+    <% for(i in posts) {%>
+        <div class="card">
+            <div class="card-body">
+                <strong class="card-title"><%= posts[i].text %></strong>
+            </div>
         </div>
-    </div>
+    <%}%>
+<%} else {%>
+    <p>So empty....</p>
 <%}%>
 
 <%- include('footer') -%>

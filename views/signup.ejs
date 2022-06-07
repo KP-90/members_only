@@ -1,14 +1,24 @@
 <%- include('header') -%>
 
   <h1>Sign Up</h1>
-  <form action="" method="POST">
-    <label for="username">Username</label>
-    <input name="username" placeholder="username" type="text" />
-    <label for="password">Password</label>
-    <input name="password" type="password" />
-    <label for="confirm_password">Confirm Password</label>
-    <input name="confirm_password" type="password" />
-    <button>Sign Up</button>
+  <form action="" method="POST"> 
+    <div class="mb-3">
+      <label for="username" class="form-label">Username</label>
+      <input name="username" placeholder="username" type="text" class="form-control" />
+    </div>
+    <div class="row">
+      <div class="col">
+        <label for="password" class="form-label">Password</label>
+        <input name="password" type="password" class="form-control" />
+      </div>
+      <div class="col">
+        <label for="confirm_password" class="form-label">Confirm Password</label>
+        <input name="confirm_password" type="password" class="form-control" />
+      </div>
+      
+    </div>
+    
+    <button type="submit" class="btn btn-primary">Sign Up</button>
   </form>
 
   <% if (locals.errors) {%>
