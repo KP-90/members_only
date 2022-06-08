@@ -2,12 +2,13 @@
 
 <%- include('header') -%>
 
-<div class="d-flex flex-column mb-3 container">
+<div class="container">
     <% if (locals.posts) {%>
+        
         <% for (i in posts) {%>
             <div class="card">
                 <div class="card-body">
-                    <strong class="card-title"><%= posts[i].text %></strong>
+                    <strong class="card-title"><%- posts[i].text %></strong>
                     <% if(currentUser && posts[i].author.id === currentUser.id) {%>
                         <p class="card-text">You - <%= posts[i].timstamp_formatted %></p>
                     <%} else if (currentUser && (currentUser.member === true && posts[i].author.member === true)) { %>

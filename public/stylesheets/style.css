@@ -10,7 +10,6 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  
 }
 
 .links > a {
@@ -30,12 +29,6 @@ body {
 a:hover {
   color: white;
   text-decoration: underline;
-}
-
-.content {
-  margin: auto;
-  display: block;
-  max-width: 750px;
 }
 
 .new_post_btn {
