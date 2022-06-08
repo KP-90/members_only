@@ -39,5 +39,6 @@ router.post('/delete/:id', posts_controller.post_delete_post)
 
 // GET user detail page
 router.get('/user/:id', user_controller.get_user)
+router.post('/user/:id', user_controller.delete_account)
 
 module.exports = router;

@@ -1,9 +1,9 @@
 const { body,validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs')
-const Users = require('../models/users')
-const Posts = require('../models/posts')
 const passport = require("passport");
 const async = require('async')
+const Users = require('../models/users')
+const Posts = require('../models/posts')
 
 // Main page
 exports.index = function(req, res) {
@@ -41,8 +41,8 @@ exports.signup_post = [
             }
         })
     }),
-    body('password', 'Error with password').escape(),
-    body('confirm_password').escape().custom(async (confirm_password, {req}) => {
+    body('password', 'Error with password').isLength({min: 5}),
+    body('confirm_password').custom(async (confirm_password, {req}) => {
         if (confirm_password != req.body.password) {
             throw new Error("passwords must match")
         }
@@ -121,7 +121,7 @@ exports.post_member_signup = [
 ]
 
 exports.post_admin_signup = [
-    body('confirm_admin', "incorrect password").custom((value, {req}) => {
+    body('confirm_admin', "Incorrect password").custom((value, {req}) => {
         return value === process.env.ADMIN
     }),
 
@@ -129,8 +129,6 @@ exports.post_admin_signup = [
         const errors = validationResult(req);
 
         if(!errors.isEmpty()) {
-            console.log("error in admin")
-            console.log(errors.array())
             res.render('member_signup', {errors: errors.array()})
         }
         else {
@@ -140,3 +138,19 @@ exports.post_admin_signup = [
         }
     }
 ]
+
+exports.delete_account = function(req, res, next) {
+    async.parallel({
+        posts_to_delete: function(callback) {
+            Posts.deleteMany({'author': req.params.id}).exec(callback)
+        },
+        user_to_delete: function(callback) {
+            Users.findByIdAndDelete(req.params.id).exec(callback)
+        }
+    }, function(err, result) {
+        if(err) next(err)
+        else{
+            res.render('test', {user: result.user_to_delete, posts: result.posts_to_delete})
+        }
+    })
+}
