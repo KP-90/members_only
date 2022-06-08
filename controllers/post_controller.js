@@ -16,7 +16,7 @@ exports.post_new_post = [
     /*---------------------------------------------------------------------------------------------|
     |   Don't forget to change the post_update_post function as well if any changes are made here  |
     |______________________________________________________________________________________________|*/
-    body('post_text', "Error with post").trim().notEmpty().escape(),  // Look into special charcters saving as html encodes
+    body('post_text', "Error with post").trim().notEmpty().escape(),
     (req, res, next) => {
         console.log(req.body.post_text)
         const errors = validationResult(req);

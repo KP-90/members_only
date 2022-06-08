@@ -17,7 +17,7 @@ exports.index = function(req, res) {
 exports.get_user = function(req, res, next) {
     async.parallel({
         posts: function(callback){
-            Posts.find({}).where('author').equals(req.params.id).exec(callback)
+            Posts.find({}).sort({'timestamp':-1}).where('author').equals(req.params.id).populate('author').exec(callback)
         },
         user: function(callback) {
             Users.findById(req.params.id).exec(callback)
