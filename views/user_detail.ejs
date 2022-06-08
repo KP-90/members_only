@@ -36,11 +36,12 @@
 <%} else {%>
     <p>So empty....</p>
 <%}%>
-<br><br><br>
-<br><br><br>
-<h3>Danger Section</h3>
-<form action="" method="POST" id="delete_user">
-    <button type="button" form="delete_user" onclick="confirming()">Delete Account</button>
-</form>
+<hr>
+<% if (currentUser.id === user.id) {%>
+    <h3>Danger Section</h3>
+    <form action="" method="POST" id="delete_user">
+        <button type="button" form="delete_user" onclick="confirming()" class="btn btn-danger">Delete Account</button>
+    </form>
+<%}%>
 
 <%- include('footer') -%>

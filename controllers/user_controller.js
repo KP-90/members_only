@@ -15,17 +15,23 @@ exports.index = function(req, res) {
 
 // User detail page
 exports.get_user = function(req, res, next) {
-    async.parallel({
-        posts: function(callback){
-            Posts.find({}).sort({'timestamp':-1}).where('author').equals(req.params.id).populate('author').exec(callback)
-        },
-        user: function(callback) {
-            Users.findById(req.params.id).exec(callback)
-        }
-    }, function(err, results) {
-        if (err) next(err)
-        res.render('user_detail', {posts: results.posts, user: results.user})
-    })
+    console.log(req.user)
+    if(req.user !== undefined) {
+        async.parallel({
+            posts: function(callback){
+                Posts.find({}).sort({'timestamp':-1}).where('author').equals(req.params.id).populate('author').exec(callback)
+            },
+            user: function(callback) {
+                Users.findById(req.params.id).exec(callback)
+            }
+        }, function(err, results) {
+            if (err) next(err)
+            res.render('user_detail', {posts: results.posts, user: results.user})
+        })
+    }
+    else {
+        res.redirect('/login')
+    }
 }
 
 // Get signup page
@@ -64,7 +70,10 @@ exports.signup_post = [
                     if(err) {
                         return next(err)
                     }
-                    res.redirect("/")
+                    passport.authenticate("local", {
+                        successRedirect: '/',
+                        failureRedirect: '/login'
+                    })(req, res, next);
                 })
             })
         }
@@ -140,17 +149,20 @@ exports.post_admin_signup = [
 ]
 
 exports.delete_account = function(req, res, next) {
-    async.parallel({
-        posts_to_delete: function(callback) {
-            Posts.deleteMany({'author': req.params.id}).exec(callback)
-        },
-        user_to_delete: function(callback) {
-            Users.findByIdAndDelete(req.params.id).exec(callback)
-        }
-    }, function(err, result) {
-        if(err) next(err)
-        else{
-            res.render('test', {user: result.user_to_delete, posts: result.posts_to_delete})
-        }
-    })
+    function delete_posts(callback) {
+        Posts.deleteMany({'author': req.params.id}).exec(callback)
+    }
+    function delete_user(callback) {
+        Users.findByIdAndDelete(req.params.id).exec(callback)
+    }
+    async.series([
+        delete_posts,
+        delete_user
+    ], 
+        function(err, result) {
+            if(err) next(err)
+            else{
+                res.redirect('/')
+            }
+        })
 }

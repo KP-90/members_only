@@ -8,7 +8,7 @@
         <label for="post_text" class="form-label"></label>
         <%# If locals.text exists, set the textarea to that value for updating purposes. %>
         <% if (locals.text) {%>
-          <textarea name="post_text" class="form-control" id="post_text" rows="3"><%= locals.text %></textarea>
+          <textarea name="post_text" class="form-control" id="post_text" rows="3"><%- locals.text %></textarea>
         <%} else {%>
           <textarea name="post_text" class="form-control" id="post_text" rows="3"></textarea>
         <%}%>
