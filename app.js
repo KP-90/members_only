@@ -13,7 +13,7 @@ const bcrypt = require('bcryptjs')
 const Users = require('./models/users')
 
 // Connect to db
-const mongodb_url = process.env.URL;
+const mongodb_url = process.env.URL || process.env.MONGODB_URI;
 
 mongoose.connect(mongodb_url, { useUnifiedTopology: true, useNewUrlParser: true });
 const db = mongoose.connection;
