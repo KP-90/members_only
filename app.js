@@ -15,7 +15,7 @@ const Users = require('./models/users')
 // Connect to db
 const mongodb_url = process.env.URL || process.env.MONGODB_URI;
 
-mongoose.connect("mongodb+srv://m001-student:bailey36@cluster0.f91ek.mongodb.net/members_only?retryWrites=true&w=majority", { useUnifiedTopology: true, useNewUrlParser: true });
+mongoose.connect(mongodb_url, { useUnifiedTopology: true, useNewUrlParser: true });
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "mongo connection error"));
 
