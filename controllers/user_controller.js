@@ -39,7 +39,7 @@ exports.signup = (req, res) => res.render('signup')
 
 // POST signup page
 exports.signup_post = [
-    body('username').trim().isAlphanumeric().isLength({ min: 3}).withMessage("Username must be at least 3 characters").escape().custom(async (username) => {
+    body('username', "Issue with validation").trim().isLength({ min: 3}).withMessage("Username must be at least 3 characters").escape().custom(async (username) => {
         return Users.findOne({username: username})
         .then(result => {
             if (result !== null) {
