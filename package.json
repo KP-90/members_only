@@ -4,7 +4,7 @@
   "private": true,
   "engine": {
     "node": "17.5.0"
-  }
+  },
   "scripts": {
     "devstart": "nodemon ./bin/www",
     "start": "node ./bin/www"
